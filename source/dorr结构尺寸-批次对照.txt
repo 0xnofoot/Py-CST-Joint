@@ -1,0 +1,19 @@
+barch:1 l=48,w=6    0
+barch:2 l=50,w=6    225
+barch:3 l=52,w=6    450
+barch:4 l=54,w=6    675
+barch:5 l=56,w=6    900
+
+barch:6 l=48,w=7    1125
+barch:7 l=50,w=7    1350
+barch:8 l=52,w=7    1575
+barch:9 l=54,w=7    1800
+batch:10 l=56,w=7    2025
+
+............
+
+l = (b - 1) % 5 * 2 + 48
+
+w = (b - 1) / 5 + 6
+
+index_start = (b - 1) * 225

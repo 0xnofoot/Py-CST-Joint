@@ -1,5 +1,5 @@
 from core.util.matrix import struct as m_struct
-from core.util.cst import modeler as c_modeler, struct as c_struct
+from core.util.cst import modeler as c_modeler, struct as c_struct, result as c_result
 
 
 # ！！！: 返回的 info 标准：
@@ -31,11 +31,11 @@ def dorr(mws, cst_file_path, n_size, l, w, g, s, th=20, t=0.2, step=2):
         print("run failed")
         return
 
-    # 返回 AT 的 S参数， 总共四个数据， 保存在一个字典里
+    # 返回 AT 的 S参数， 总共8个数据， 保存在一个字典里
     # 由于已经删除了 Zmin 端口的入射数据
-    # 所有该字典中只包含 Zmax 的入射数据，该数据也是一个字典，包含四个 S 参数
-    sParam_AT_data = c_struct.AT.get_sParam(cst_file_path)
-    info["sParam"] = sParam_AT_data
+    # 所以该字典中只包含 Zmax 的入射数据
+    sParam = c_result.sParam.get_all_Zmaxin(cst_file_path)
+    info["sParam"] = sParam
 
     c_modeler.shape.delete_solid(mws, sub_name[0], sub_name[1])
     c_modeler.shape.delete_solid(mws, dorr_name[0], dorr_name[1])

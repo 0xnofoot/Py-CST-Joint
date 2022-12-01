@@ -88,3 +88,25 @@ def get_Zmin1_Zmin2(file_path):
 def get_Zmin2_Zmin2(file_path):
     data = get(file_path, "SZmin(2),Zmin(2)")
     return data
+
+
+def get_all_Zmaxin(cst_filepath):
+    Zmax1_Zmax1 = get_Zmax1_Zmax1(cst_filepath)
+    Zmax2_Zmax1 = get_Zmax2_Zmax1(cst_filepath)
+    Zmin1_Zmax1 = get_Zmin1_Zmax1(cst_filepath)
+    Zmin2_Zmax1 = get_Zmin2_Zmax1(cst_filepath)
+    Zmax1_Zmax2 = get_Zmax1_Zmax2(cst_filepath)
+    Zmax2_Zmax2 = get_Zmax2_Zmax2(cst_filepath)
+    Zmin1_Zmax2 = get_Zmin1_Zmax2(cst_filepath)
+    Zmin2_Zmax2 = get_Zmin2_Zmax2(cst_filepath)
+
+    sParam_Zmaxin = {"Zmax1_Zmax1": Zmax1_Zmax1,
+                     "Zmax2_Zmax1": Zmax2_Zmax1,
+                     "Zmin1_Zmax1": Zmin1_Zmax1,
+                     "Zmin2_Zmax1": Zmin2_Zmax1,
+                     "Zmax1_Zmax2": Zmax1_Zmax2,
+                     "Zmax2_Zmax2": Zmax2_Zmax2,
+                     "Zmin1_Zmax2": Zmin1_Zmax2,
+                     "Zmin2_Zmax2": Zmin2_Zmax2}
+
+    return sParam_Zmaxin

@@ -8,8 +8,8 @@ output_dir = global_var.output_dir
 # index 数据保存
 # 记得写 index 格式标准！！！！！
 # 记得写 batch
-def save(batch, index, struct_name, struct_param, dir):
-    index_save_dir = os.path.join(output_dir, dir, "index")
+def save(batch, index, struct_name, struct_param, dir_project="default_Project"):
+    index_save_dir = os.path.join(output_dir, dir_project, "index")
     if not os.path.exists(index_save_dir):
         os.makedirs(index_save_dir)
     index_file_path = os.path.join(index_save_dir, "index.txt")

@@ -3,10 +3,10 @@ from core.util.cst import modeler as c_modeler
 from core.joint_simulation import result as j_result
 
 
-def dorr(file_name, batch=1, file_dir=None, freq_low=0.2, freq_high=2, isStart=True, cst_object=None):
+def dorr(file_name, batch=1, dir_project="AT", freq_low=0.2, freq_high=2, isStart=True, cst_object=None):
     if isStart is True:
         cst_env, mws, cst_file_path = c_modeler.initial.create_new_mws_project(
-            file_name, "template_unit_cell", freq_low, freq_high, file_dir)
+            file_name, "template_unit_cell", freq_low, freq_high, dir_project)
         cst_object = (cst_env, mws, cst_file_path)
     else:
         cst_env, mws, cst_file_path = cst_object
@@ -17,8 +17,8 @@ def dorr(file_name, batch=1, file_dir=None, freq_low=0.2, freq_high=2, isStart=T
     # 在 S 参数的处理中，所有关于 Zmin 端口的入射数据的操作也都被注释掉了
     # c_modeler.solver.add_port(mws, "Zmin")
 
-    if file_dir is None:
-        file_dir = file_name
+    if dir_project is None:
+        dir_project = file_name
     # n_size: 64
     # l: 48~57, 因为 l必须为偶数，所以总共 5 组数据, 分别为 48, 50 52，54，56
     # w: 6~11, 5 组数据，分别为 6， 7， 8， 9， 10
@@ -36,6 +36,6 @@ def dorr(file_name, batch=1, file_dir=None, freq_low=0.2, freq_high=2, isStart=T
         for s in range(5, 20):
             index = index + 1
             info = single.AT.dorr(mws, cst_file_path, n_size, l, w, g, s)
-            j_result.info.AT_handle(batch, index, info, file_dir)
+            j_result.info.handle_by_layer(batch, index, info, layer=2, dir_project=dir_project)
 
     return cst_object

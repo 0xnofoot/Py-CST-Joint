@@ -27,37 +27,46 @@ def save(sPara_data, dir, file_name):
             f.write(line)
 
 
-# 保存 AT 所需要的 S参数
-# 传入的 AT 的 S参数， 总共八个数据， 保存在一个字典里
-# 这一个字典包含两个字典，分别是 Zmax_in 入射 和 Zmin_in 入射，每个入射四个数据，所以总共八个
-# 实际上对于 AT 结构来说，一个方向的入射数据就够了，Zmin_in 的数据可以不处理
-# Zmin 端口的入射数据已经被注释，不再使用
-def save_AT(batch, sParam_AT_data, dir="AT", prefix="", suffix=".txt"):
-    save_dir_base = os.path.join(dir, str(batch) + "_batch", "cst", "sParam")
+def save_all_Zmaxin(batch, sParam, dir_project="default_Project", prefix="", suffix=".txt"):
+    save_dir_base = os.path.join(dir_project, str(batch) + "_batch", "cst", "sParam")
 
-    save_dir_Zmax_in = os.path.join(save_dir_base, "Zmax_in")
-    # save_dir_Zmin_in = os.path.join(save_dir_base, "Zmin_in")
+    Z = "Zmax1_Zmax1"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
 
-    Z = "Zmin2_Zmax1"
-    save(sParam_AT_data["Zmax_in"][Z], os.path.join(save_dir_Zmax_in, Z), prefix + "_" + Z + suffix)
+    Z = "Zmax2_Zmax1"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
 
     Z = "Zmin1_Zmax1"
-    save(sParam_AT_data["Zmax_in"][Z], os.path.join(save_dir_Zmax_in, Z), prefix + "_" + Z + suffix)
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
 
-    Z = "Zmin2_Zmax2"
-    save(sParam_AT_data["Zmax_in"][Z], os.path.join(save_dir_Zmax_in, Z), prefix + "_" + Z + suffix)
+    Z = "Zmin2_Zmax1"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
+
+    Z = "Zmax1_Zmax2"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
+
+    Z = "Zmax2_Zmax2"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
 
     Z = "Zmin1_Zmax2"
-    save(sParam_AT_data["Zmax_in"][Z], os.path.join(save_dir_Zmax_in, Z), prefix + "_" + Z + suffix)
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
 
-    # Z = "Zmax2_Zmin1"
-    # save(sParam_AT_data["Zmin_in"][Z], os.path.join(save_dir_Zmin_in, Z), prefix + "_" + Z + suffix)
-    #
-    # Z = "Zmax1_Zmin1"
-    # save(sParam_AT_data["Zmin_in"][Z], os.path.join(save_dir_Zmin_in, Z), prefix + "_" + Z + suffix)
-    #
-    # Z = "Zmax2_Zmin2"
-    # save(sParam_AT_data["Zmin_in"][Z], os.path.join(save_dir_Zmin_in, Z), prefix + "_" + Z + suffix)
-    #
-    # Z = "Zmax1_Zmin2"
-    # save(sParam_AT_data["Zmin_in"][Z], os.path.join(save_dir_Zmin_in, Z), prefix + "_" + Z + suffix)
+    Z = "Zmin2_Zmax2"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
+
+
+# 保存 AT 所需要的 S参数
+def save_AT(batch, sParam, dir_project="AT", prefix="", suffix=".txt"):
+    save_dir_base = os.path.join(dir_project, str(batch) + "_batch", "cst", "sParam")
+
+    Z = "Zmin2_Zmax1"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
+
+    Z = "Zmin1_Zmax1"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
+
+    Z = "Zmin2_Zmax2"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)
+
+    Z = "Zmin1_Zmax2"
+    save(sParam[Z], os.path.join(save_dir_base, Z), prefix + "_" + Z + suffix)

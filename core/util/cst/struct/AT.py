@@ -106,28 +106,3 @@ def dorr(mws, material, l, w, g, s, th, t, step, name="dorr", component="Metal")
     modeler.transform.rename(mws, component, "base", name)
 
     return component, name
-
-
-def get_sParam(cst_filepath):
-    Zmin2_Zmax1 = result.sParam.get_Zmin2_Zmax1(cst_filepath)
-    Zmin1_Zmax1 = result.sParam.get_Zmin1_Zmax1(cst_filepath)
-    Zmin2_Zmax2 = result.sParam.get_Zmin2_Zmax2(cst_filepath)
-    Zmin1_Zmax2 = result.sParam.get_Zmin1_Zmax2(cst_filepath)
-
-    Zmax_in = {"Zmin2_Zmax1": Zmin2_Zmax1, "Zmin1_Zmax1": Zmin1_Zmax1,
-               "Zmin2_Zmax2": Zmin2_Zmax2, "Zmin1_Zmax2": Zmin1_Zmax2}
-
-    # # 所有 关于 Zmin 端口入射的数据都已被注释掉，不再使用
-    # Zmax2_Zmin1 = result.sParam.get_Zmax2_Zmin1(cst_filepath)
-    # Zmax1_Zmin1 = result.sParam.get_Zmax1_Zmin1(cst_filepath)
-    # Zmax2_Zmin2 = result.sParam.get_Zmax2_Zmin2(cst_filepath)
-    # Zmax1_Zmin2 = result.sParam.get_Zmax1_Zmin2(cst_filepath)
-    #
-    # Zmin_in = {"Zmax2_Zmin1": Zmax2_Zmin1, "Zmax1_Zmin1": Zmax1_Zmin1,
-    #            "Zmax2_Zmin2": Zmax2_Zmin2, "Zmax1_Zmin2": Zmax1_Zmin2}
-    #
-    # sParam_AT_data = {"Zmax_in": Zmax_in, "Zmin_in": Zmin_in}
-
-    sParam_AT_data = {"Zmax_in": Zmax_in}
-
-    return sParam_AT_data

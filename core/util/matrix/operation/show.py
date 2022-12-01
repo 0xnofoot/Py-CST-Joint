@@ -9,7 +9,7 @@ output_dir = global_var.output_dir
 # 以逆时针旋转 90°显示该矩阵
 # isSave: 选择是否保存该图像
 # isShow: 选择是否显示该图像
-def save_show_pic_rat90(matrix, isSave=False, dir=None, name=None, isShow=True):
+def save_show_pic_rat90(matrix, isSave=False, dir="default", name=None, isShow=True):
     matrix = np.rot90(matrix, 1)
     plt.matshow(matrix, cmap=plt.cm.Greys)
     plt.xticks(alpha=0)

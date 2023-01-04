@@ -34,8 +34,15 @@ def dorr(file_name, batch=1, dir_project="AT", freq_low=0.2, freq_high=2, isStar
 
     for g in range(5, 20):
         for s in range(5, 20):
+            # ！！！: 返回的 info 标准：
+            # info 是一个信息字典， 用于返回这一次仿真中所有的数据信息
+            # 其中包括
+            # info["struct_param"] : 结构参数信息， 结构参数本身也是一个字典
+            # info["matrix_data"]     : 矩阵数据信息，是一个元组，因为可能有多层矩阵
+            # info["struct_name"]  : 结构器件和名称信息，是一个元组
+            # info["sParam"]       : S 参数数据信息，是一个字典
             index = index + 1
             info = single.AT.dorr(mws, cst_file_path, n_size, l, w, g, s)
-            j_result.info.handle_by_layer(batch, index, info, layer=2, dir_project=dir_project)
+            j_result.info.handle_by_layer(batch, index, info, layer=2, dir_project=dir_project, mtype="AT")
 
     return cst_object

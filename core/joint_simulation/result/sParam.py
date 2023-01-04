@@ -27,6 +27,11 @@ def save(sPara_data, dir, file_name):
             f.write(line)
 
 
+def save_sParam_by_name(sName, batch, sParam, dir_project="default_Project", prefix="", suffix=".txt"):
+    save_dir_base = os.path.join(dir_project, str(batch) + "_batch", "cst", "sParam")
+    save(sParam[sName], os.path.join(save_dir_base, sName), prefix + "_" + sName + suffix)
+
+
 def save_all_Zmaxin(batch, sParam, dir_project="default_Project", prefix="", suffix=".txt"):
     save_dir_base = os.path.join(dir_project, str(batch) + "_batch", "cst", "sParam")
 

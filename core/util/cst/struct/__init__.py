@@ -2,4 +2,4 @@
 # @file __init__.py
 
 
-from . import AT, substrate
+from . import AT, substrate, absorber

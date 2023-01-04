@@ -21,7 +21,7 @@ def dorr(mws, cst_file_path, n_size, l, w, g, s, th=20, t=0.2, step=2):
     # c_modeler.material.define_material(mws, "Polyimide", 3.0, 1.0, 0.008, color=(0.89, 1, 0.9569))
     c_modeler.material.load_material(mws, "Aluminum")
     c_modeler.material.load_material(mws, "Polyimide (lossy)")
-    sub_name = c_struct.substrate.brick_sub(mws, "Polyimide (lossy)", n_size, n_size, th, step)
+    sub_name = c_struct.substrate.brick_sub(mws, "Polyimide (lossy)", n_size, n_size, 0, th, step)
     dorr_name = c_struct.AT.dorr(mws, "Aluminum", l, w, g, s, th, t, step)
     info["struct_name"] = (sub_name, dorr_name)
 

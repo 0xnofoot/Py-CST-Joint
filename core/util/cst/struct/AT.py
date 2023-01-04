@@ -1,5 +1,4 @@
-import os
-from core.util.cst import modeler, result
+from core.util.cst import modeler
 from core import global_var
 
 output_dir = global_var.output_dir

@@ -2,8 +2,8 @@ import os
 
 from core import global_var
 
-WORK_HOME = global_var.WORK_HOME
-vb_dir = os.path.join(WORK_HOME, "source", "cst", "vb")
+resource_dir = global_var.resource_dir
+vb_dir = os.path.join(resource_dir, "cst", "vb")
 
 
 # 利用相应的template vb脚本初始化工程
@@ -189,3 +189,16 @@ def solver_add_port(modeler, port_name, mode):
 def run_solver(modeler):
     isComplete = modeler.run_solver()
     return isComplete
+
+
+def boundary(modeler, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax):
+    path = os.path.join(vb_dir, "boundary")
+    with open(path, mode="r", encoding="utf-8") as f:
+        s_command = f.read()
+        s_command = s_command.replace("{$Xmin}", Xmin)
+        s_command = s_command.replace("{$Xmax}", Xmax)
+        s_command = s_command.replace("{$Ymin}", Ymin)
+        s_command = s_command.replace("{$Ymax}", Ymax)
+        s_command = s_command.replace("{$Zmin}", Zmin)
+        s_command = s_command.replace("{$Zmax}", Zmax)
+        modeler.add_to_history("define boundary", s_command)
